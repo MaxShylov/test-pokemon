@@ -43,7 +43,7 @@
   "rules": {
     "no-useless-catch": "off",
 
-    "no-console": ["warn", { "allow": ["warn", "error"] }],
+    "no-console": ["warn", { "allow": ["warn", "error", "info"] }],
     "no-use-before-define": "error",
     "radix": ["error", "as-needed"],
     "no-param-reassign": ["error", {

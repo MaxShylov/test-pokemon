@@ -31,6 +31,9 @@
     "lint:es:fix": "eslint . --fix",
     "lint:styles": "stylelint **/*.scss",
     "lint:styles:fix": "pnpm lint:styles --fix",
+    "server:build": "cd server && pnpm build",
+    "server:start": "cd server && pnpm start",
+    "build-and-start": "pnpm build && pnpm server:build && pnpm server:start",
     "prepare": "husky"
   },
   "husky": {

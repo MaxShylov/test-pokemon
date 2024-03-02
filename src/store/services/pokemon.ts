@@ -11,11 +11,11 @@ interface PokemonResponse {
 
 export const pokemonApi = createApi({
   baseQuery: axiosBaseQuery({
-    baseUrl: 'https://pokeapi.co/api/v2/',
+    baseUrl: 'http://localhost:3001/api',
   }),
   endpoints: (build) => ({
     getPokemon: build.query<PokemonResponse[], void>({
-      query: () => ({ url: `/pokemon` }),
+      query: () => ({ url: `/pokemon?limit=10` }),
     }),
     // getPokemonByName: builder.query<PokemonResponse, string>({
     //   query: (name) => `pokemon/${name}`,
