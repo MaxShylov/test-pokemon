@@ -1,6 +1,5 @@
 import React, { type FC } from 'react';
 
-import { useQuery } from 'src/hooks/useQuery';
 import { useGetPokemonQuery } from 'src/store/services/pokemon';
 
 interface HomeProps {
@@ -8,14 +7,13 @@ interface HomeProps {
 }
 
 export const Home: FC<HomeProps> = () => {
-  const qwe = useQuery();
-  console.log('qwe', qwe);
+  // const qwe = useQuery();
 
   // const { data } = useGetPokemonByNameQuery('bulbasaur');
   const { data: data2 } = useGetPokemonQuery();
 
   // console.log('data', data);
-  console.log('data2', data2);
+  console.warn('data2', data2);
 
   return <div>Home</div>;
 };
