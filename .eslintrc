@@ -1,0 +1,171 @@
+{
+  "root": true,
+  "env": {
+    "browser": true,
+    "es2021": true,
+    "jest": true,
+    "es6": true
+  },
+  "extends": [
+    "eslint:recommended",
+    "plugin:jsx-a11y/strict",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:@typescript-eslint/stylistic",
+    "plugin:react/recommended",
+    "plugin:import/recommended",
+    "plugin:import/typescript",
+    "plugin:typescript-sort-keys/recommended"
+  ],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "project": "tsconfig.json",
+    "ecmaVersion": "latest",
+    "sourceType": "module"
+  },
+  "plugins": [
+    "prettier",
+    "react",
+    "react-hooks",
+    "import",
+    "simple-import-sort",
+    "unused-imports",
+    "sort-keys",
+    "sort-destructure-keys"
+  ],
+  "settings": {
+    "react": {
+      "version": "detect"
+    },
+    "import/resolver": {
+      "typescript": {}
+    }
+  },
+  "rules": {
+    "no-useless-catch": "off",
+
+    "no-console": ["warn", { "allow": ["warn", "error"] }],
+    "no-use-before-define": "error",
+    "radix": ["error", "as-needed"],
+    "no-param-reassign": ["error", {
+      "props": true,
+      "ignorePropertyModificationsForRegex": ["^acc"]
+    }],
+    "no-implicit-coercion": ["error", { "allow": ["!!"] } ],
+    "arrow-body-style": ["error", "as-needed"],
+    "prefer-template": "error",
+    "default-param-last": "warn",
+
+    "import/no-cycle": "error",
+    "import/consistent-type-specifier-style": ["error", "prefer-inline"],
+    "import/dynamic-import-chunkname": "error",
+    "import/first": "error",
+    "import/newline-after-import": "error",
+    "import/no-named-as-default-member": "off",
+
+    "simple-import-sort/imports": ["error", {
+      "groups": [
+        ["^react$", "^react-", "^[a-z]"],
+        ["^@"],
+        ["^antd"],
+        ["^~"],
+        ["^src/"],
+        ["^\\.\\.(?!/?$)", "^\\.\\./?$"],
+        ["^\\./(?=.*/)(?!/?$)", "^\\.(?!/?$)", "^\\./?$"],
+        ["^.+\\.s?css$"],
+        ["^\\u0000"]
+      ]
+    }],
+    "simple-import-sort/exports": "error",
+
+    "@typescript-eslint/no-unused-vars": "off",
+    "unused-imports/no-unused-imports": "error",
+    "unused-imports/no-unused-vars": [
+      "warn",
+      {
+        "vars": "all",
+        "varsIgnorePattern": "^_",
+        "args": "after-used",
+        "argsIgnorePattern": "^_"
+      }
+    ],
+
+    "sort-keys": "off",
+    "sort-keys/sort-keys-fix": "warn",
+    "sort-destructure-keys/sort-destructure-keys": "error",
+
+    "react/function-component-definition": ["error", { "namedComponents": "arrow-function" }],
+    "react/jsx-sort-props": ["error", {
+      "callbacksLast": true,
+      "shorthandLast": true,
+      "multiline":  "first",
+      "reservedFirst": true
+    }],
+    "react/jsx-curly-brace-presence": "error",
+    "react/self-closing-comp": "error",
+    "react/no-unused-prop-types": "error",
+    "react/no-unstable-nested-components": "error",
+    "react/no-object-type-as-default-prop": "error",
+    "react/no-multi-comp": "error",
+    "react/no-danger": "warn",
+    "react/no-array-index-key": "warn",
+    "react/jsx-props-no-spreading": "error",
+    "react/jsx-no-useless-fragment": "error",
+    "react/jsx-no-leaked-render": ["error", { "validStrategies": ["coerce"] }],
+    "react/jsx-no-constructed-context-values": "error",
+    "react/jsx-handler-names": ["warn", {
+        "eventHandlerPrefix": "handle|set",
+        "eventHandlerPropPrefix": "on",
+        "checkLocalVariables": true,
+        "checkInlineFunction": true
+    }],
+    "react/jsx-fragments": "error",
+    "react/jsx-boolean-value": "error",
+
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": "error",
+
+    "@typescript-eslint/sort-type-constituents": "error",
+
+    "jsx-a11y/control-has-associated-label": [
+      2,
+      {
+        "labelAttributes": ["aria-label"],
+        "controlComponents": ["a", "Link", "button", "Button"]
+      }
+    ],
+    "jsx-a11y/alt-text": [
+      2,
+      {
+        "elements": ["img", "object", "area", "input[type=\"image\"]"],
+        "img": ["Image", "ImageWithFallback"],
+        "object": ["Object"],
+        "area": ["Area"],
+        "input[type=\"image\"]": ["InputImage"]
+      }
+    ],
+    "jsx-a11y/anchor-has-content": [
+      2,
+      {
+        "components": ["a", "Link", "Button", "button"]
+      }
+    ],
+    "jsx-a11y/anchor-is-valid": [
+      2,
+      {
+        "components": ["a", "Link"],
+        "specialLink": ["hrefLeft", "hrefRight"],
+        "aspects": ["noHref", "invalidHref", "preferButton"]
+      }
+    ],
+
+    "no-debugger": "error",
+    "prettier/prettier": [
+      "error",
+      {
+        "singleQuote": true,
+        "printWidth":100,
+        "endOfLine": "lf"
+      }
+    ]
+  }
+}
