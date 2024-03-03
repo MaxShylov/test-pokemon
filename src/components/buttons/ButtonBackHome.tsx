@@ -5,11 +5,7 @@ import { Button } from 'antd';
 
 import { Route } from 'src/types';
 
-interface ButtonBackHomeProps {
-  data?: unknown;
-}
-
-export const ButtonBackHome: FC<ButtonBackHomeProps> = () => {
+export const ButtonBackHome: FC = () => {
   const navigate = useNavigate();
 
   const handleClick = useCallback(() => navigate(Route.Home), [navigate]);

@@ -7,7 +7,7 @@ interface SearchProps {
 }
 
 export const SearchByName: FC<SearchProps> = () => {
-  const handleSearch = useCallback((value: string) => console.warn('value', value), []);
+  const handleSearch = useCallback((value: string) => console.info('value', value), []);
 
   return (
     <Search enterButton="Search" placeholder="input name" allowClear onSearch={handleSearch} />

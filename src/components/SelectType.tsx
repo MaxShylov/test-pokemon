@@ -6,9 +6,6 @@ interface SelectTypeProps {
   data?: unknown;
 }
 
-export const SelectType: FC<SelectTypeProps> = () => {
-  /* eslint-disable-next-line */
-  console.log('SelectType');
-
-  return <Select options={[{ label: <span>sample</span>, value: 'sample' }]} />;
-};
+export const SelectType: FC<SelectTypeProps> = () => (
+  <Select options={[{ label: <span>sample</span>, value: 'sample' }]} />
+);

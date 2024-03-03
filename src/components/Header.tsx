@@ -4,9 +4,4 @@ interface HeaderProps {
   data?: unknown;
 }
 
-export const Header: FC<HeaderProps> = () => {
-  /* eslint-disable-next-line */
-  console.log('Header');
-
-  return <h1>Header</h1>;
-};
+export const Header: FC<HeaderProps> = () => <h1>Header</h1>;

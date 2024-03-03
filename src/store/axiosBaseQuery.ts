@@ -5,7 +5,9 @@ import { type BaseQueryFn } from '@reduxjs/toolkit/query';
 
 export const axiosBaseQuery =
   (
-    { baseUrl }: { baseUrl: string } = { baseUrl: '' },
+    { baseUrl }: { baseUrl: string } = {
+      baseUrl: process.env.REACT_APP_API_BASE_URL || '',
+    },
   ): BaseQueryFn<
     {
       data?: AxiosRequestConfig['data'];
