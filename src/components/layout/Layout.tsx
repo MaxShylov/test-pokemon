@@ -3,9 +3,8 @@ import { Outlet } from 'react-router-dom';
 
 import Space from 'antd/es/space';
 
-import { Header } from 'src/components/Header';
-import { SearchByName } from 'src/components/SearchByName';
-import { SelectType } from 'src/components/SelectType';
+import { SearchByName } from 'src/components/search-by-name/SearchByName';
+import { SelectType } from 'src/components/select-type/SelectType';
 
 import styles from './Layout.module.scss';
 
@@ -16,7 +15,7 @@ interface LayoutProps {
 export const Layout: FC<LayoutProps> = () => (
   <div className={styles.wrap}>
     <Space align="center" direction="vertical">
-      <Header />
+      <h1>Pokémon</h1>
 
       <Space>
         <SearchByName />

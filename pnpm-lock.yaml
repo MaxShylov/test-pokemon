@@ -8,6 +8,9 @@ importers:
 
   .:
     dependencies:
+      '@ant-design/icons':
+        specifier: ^5.3.1
+        version: 5.3.1(react-dom@18.2.0)(react@18.2.0)
       '@reduxjs/toolkit':
         specifier: ^2.2.1
         version: 2.2.1(react-redux@9.1.0)(react@18.2.0)
@@ -38,6 +41,9 @@ importers:
       axios:
         specifier: ^1.6.7
         version: 1.6.7
+      pokemons:
+        specifier: 'link:'
+        version: 'link:'
       react:
         specifier: ^18.2.0
         version: 18.2.0

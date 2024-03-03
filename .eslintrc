@@ -40,6 +40,18 @@
       "typescript": {}
     }
   },
+  "overrides": [
+    {
+      "files": ["src/store/**/*Slice.ts"],
+      "rules": {
+        "no-param-reassign": ["error",
+          {
+            "ignorePropertyModificationsForRegex": ["^state$"]
+          }
+        ]
+      }
+    }
+  ],
   "rules": {
     "no-useless-catch": "off",
 
@@ -66,7 +78,7 @@
       "groups": [
         ["^react$", "^react-", "^[a-z]"],
         ["^@"],
-        ["^antd"],
+        ["^antd", "^@ant"],
         ["^~"],
         ["^src/"],
         ["^\\.\\.(?!/?$)", "^\\.\\./?$"],

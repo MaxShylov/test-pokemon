@@ -3,12 +3,12 @@ import { useNavigate } from 'react-router-dom';
 
 import { Button } from 'antd';
 
-import { Route } from 'src/types';
+import { Path } from 'src/types';
 
 export const ButtonBackHome: FC = () => {
   const navigate = useNavigate();
 
-  const handleClick = useCallback(() => navigate(Route.Home), [navigate]);
+  const handleClick = useCallback(() => navigate(Path.Home), [navigate]);
 
   return (
     <Button type="primary" onClick={handleClick}>

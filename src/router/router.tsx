@@ -5,16 +5,18 @@ import { Layout } from 'src/components/layout/Layout';
 import { Error } from 'src/pages/Error';
 import { Home } from 'src/pages/Home';
 import { Pokemon } from 'src/pages/Pokemon';
-import { Route } from 'src/types';
+import { Type } from 'src/pages/Type';
+import { Path } from 'src/types';
 
 export const router = createBrowserRouter([
   {
     children: [
       { element: <Home />, index: true },
-      { element: <Pokemon />, path: `${Route.Pokemon}/:name` },
+      { element: <Pokemon />, path: `${Path.Pokemon}/:name` },
+      { element: <Type />, path: `${Path.Type}/:type` },
     ],
     element: <Layout />,
     errorElement: <Error />,
-    path: Route.Home,
+    path: Path.Home,
   },
 ]);

@@ -1,4 +1,5 @@
-export enum Route {
+export enum Path {
   Home = '/',
   Pokemon = '/pokemon',
+  Type = '/type',
 }
