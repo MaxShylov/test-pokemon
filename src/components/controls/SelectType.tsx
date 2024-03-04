@@ -9,8 +9,6 @@ import { useGetTypesQuery } from 'src/store/services/pokemon';
 import { Path } from 'src/types';
 import { capitalize } from 'src/utils/helpers/text';
 
-import styles from './SelectType.module.scss';
-
 export const SelectType: FC = () => {
   const { type } = useParams();
   const dispatch = useDispatch();
@@ -33,7 +31,6 @@ export const SelectType: FC = () => {
 
   return (
     <Select
-      className={styles.select}
       disabled={isLoading}
       loading={isLoading}
       options={options}

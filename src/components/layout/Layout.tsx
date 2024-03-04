@@ -3,8 +3,7 @@ import { Outlet } from 'react-router-dom';
 
 import Space from 'antd/es/space';
 
-import { SearchByName } from 'src/components/search-by-name/SearchByName';
-import { SelectType } from 'src/components/select-type/SelectType';
+import { SearchByName, SelectType } from 'src/components/controls';
 
 import styles from './Layout.module.scss';
 
@@ -17,10 +16,10 @@ export const Layout: FC<LayoutProps> = () => (
     <Space align="center" direction="vertical">
       <h1>Pokémon</h1>
 
-      <Space>
+      <aside className={styles.controls}>
         <SearchByName />
         <SelectType />
-      </Space>
+      </aside>
 
       <main className={styles.main}>
         <Outlet />

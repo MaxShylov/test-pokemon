@@ -10,8 +10,6 @@ import { clearFilterBy, selectFilterBy, setFilterBy } from 'src/store/filterSlic
 import { Path } from 'src/types';
 import { debounce } from 'src/utils/helpers/functions';
 
-import styles from './SearchByName.module.scss';
-
 export const SearchByName: FC = () => {
   const { name } = useParams();
   const navigate = useNavigate();
@@ -58,7 +56,6 @@ export const SearchByName: FC = () => {
   return (
     <Input
       allowClear={!loading}
-      className={styles.input}
       placeholder="Enter name"
       prefix={<SearchOutlined />}
       suffix={loading ? <LoadingOutlined /> : null}
