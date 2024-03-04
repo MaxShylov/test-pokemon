@@ -52,4 +52,13 @@ describe('debounce function', () => {
 
     expect(func).not.toBeCalled();
   });
+
+  it('should show pending status', () => {
+    debouncedFunc(0);
+    expect(debouncedFunc.pending()).toBeTruthy();
+
+    jest.advanceTimersByTime(500);
+
+    expect(debouncedFunc.pending()).toBeFalsy();
+  });
 });

@@ -1,57 +1,65 @@
-import React, { type FC, useCallback, useEffect, useMemo, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate, useParams } from 'react-router-dom';
+import React, { type ChangeEvent, type FC, useCallback, useEffect, useMemo, useState } from 'react';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
 
 import Input from 'antd/es/input/Input';
 import LoadingOutlined from '@ant-design/icons/LoadingOutlined';
 import SearchOutlined from '@ant-design/icons/SearchOutlined';
 
-import { clearFilterBy, selectFilterBy, setFilterBy } from 'src/store/slices/filterSlice';
 import { Path } from 'src/types';
 import { debounce } from 'src/utils/helpers/functions';
 
+const SEARCH_BY_NAME = 'search-by-name';
+
 export const SearchByName: FC = () => {
-  const { name } = useParams();
+  const { name = '' } = useParams();
   const navigate = useNavigate();
-  const [value, setValue] = useState(name);
+  const location = useLocation();
+
+  const [value, setValue] = useState('');
   const [loading, setLoading] = useState(false);
-  const filterBy = useSelector(selectFilterBy);
-  const dispatch = useDispatch();
 
   const debounceNavigate = useMemo(
     () =>
       debounce((name) => {
         setLoading(false);
         navigate(`${Path.Pokemon}/${name}`);
-      }, 500),
+      }, 3000),
     [navigate],
   );
 
   const handleChange = useCallback(
-    (event: React.ChangeEvent<HTMLInputElement>) => {
+    (event: ChangeEvent<HTMLInputElement>) => {
       const { value } = event.target;
+
+      if (location.state !== SEARCH_BY_NAME) {
+        navigate('', { replace: false, state: SEARCH_BY_NAME });
+      }
+
       setValue(value);
 
       if (!value) {
-        dispatch(clearFilterBy());
         setLoading(false);
         navigate(Path.Home);
         return;
       }
 
-      if (filterBy !== 'name') dispatch(setFilterBy('name'));
       setLoading(true);
       debounceNavigate(value);
     },
-    [debounceNavigate, dispatch, filterBy, navigate],
+    [debounceNavigate, location.state, navigate],
   );
 
   useEffect(() => {
-    if (filterBy !== 'name') {
-      if (!name) setValue('');
+    setValue(name);
+  }, [name]);
+
+  useEffect(() => {
+    if (location.state !== SEARCH_BY_NAME && debounceNavigate.pending()) {
       debounceNavigate.cancel();
+      setLoading(false);
+      setValue('');
     }
-  }, [debounceNavigate, filterBy, name]);
+  }, [debounceNavigate, location.state]);
 
   return (
     <Input
