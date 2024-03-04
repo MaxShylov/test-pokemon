@@ -1,0 +1,26 @@
+.cover {
+  height: 300px;
+  padding: 10px;
+
+  img {
+    height: 100%;
+    width: 100%;
+  }
+
+  .skeletonImage {
+    height: 100%;
+    width: 100%;
+
+    :global {
+      .ant-skeleton-image {
+        height: 100%;
+        width: 100%;
+      }
+    }
+  }
+}
+
+.title {
+  text-align: center;
+  font-weight: bold;
+}

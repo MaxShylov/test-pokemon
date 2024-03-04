@@ -8,10 +8,19 @@ interface PokemonResponse {
   id: string;
   moves: { move: { name: string } }[];
   name: string;
-  sprites: { other: { dream_world: { front_default: string } } };
+  sprites: {
+    other: {
+      dream_world: { front_default: string };
+      home: { front_default: string };
+      'official-artwork': { front_default: string };
+    };
+  };
   types: { type: { name: string } }[];
 }
 
+interface PokemonListByTypeResponse {
+  pokemon: { pokemon: { name: string } }[];
+}
 interface TypeResponse {
   results: { name: string }[];
 }
@@ -23,19 +32,23 @@ export const pokemonApi = createApi({
       query: () => ({ url: `/pokemon?limit=12` }),
     }),
     getPokemonByName: build.query<IPokemon, string>({
-      query: (name) => ({ url: `/pokemon/${name}` }),
+      query: (name) => ({ url: `/pokemon/${name.toLowerCase()}` }),
       transformResponse: (response: PokemonResponse): IPokemon => {
         const { moves, name, sprites, types } = response;
+        const { dream_world, home, 'official-artwork': official } = sprites.other;
+
         return {
-          image: sprites.other.dream_world.front_default,
+          image: dream_world.front_default || home.front_default || official.front_default,
           moves: moves.map(({ move }) => move.name),
           name,
           types: types.map(({ type }) => type.name),
         };
       },
     }),
-    getPokemonByType: build.query<PokemonResponse[], string>({
+    getPokemonListByType: build.query<string[], string>({
       query: (type) => ({ url: `/type/${type}` }),
+      transformResponse: (response: PokemonListByTypeResponse): string[] =>
+        response.pokemon.map(({ pokemon }) => pokemon.name),
     }),
     getTypes: build.query<string[], void>({
       query: () => ({ url: `/type` }),
@@ -48,7 +61,8 @@ export const pokemonApi = createApi({
 
 export const {
   useGetPokemonByNameQuery,
-  useGetPokemonByTypeQuery,
+  useGetPokemonListByTypeQuery,
   useGetPokemonQuery,
   useGetTypesQuery,
+  useLazyGetPokemonByNameQuery,
 } = pokemonApi;
