@@ -122,7 +122,7 @@
     "react/no-array-index-key": "warn",
     "react/jsx-props-no-spreading": "error",
     "react/jsx-no-useless-fragment": "error",
-    "react/jsx-no-leaked-render": ["error", { "validStrategies": ["coerce"] }],
+    "react/jsx-no-leaked-render": ["error", { "validStrategies": ["coerce", "ternary"] }],
     "react/jsx-no-constructed-context-values": "error",
     "react/jsx-handler-names": ["warn", {
         "eventHandlerPrefix": "handle|set",
@@ -164,9 +164,8 @@
     "jsx-a11y/anchor-is-valid": [
       2,
       {
-        "components": ["a", "Link"],
-        "specialLink": ["hrefLeft", "hrefRight"],
-        "aspects": ["noHref", "invalidHref", "preferButton"]
+        "components": [ "Link" ],
+        "specialLink": [ "to" ]
       }
     ],
 

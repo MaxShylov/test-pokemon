@@ -1,6 +1,5 @@
-export interface Pokemon {
-  id: string;
-  img: string;
+export interface IPokemon {
+  image: string;
   moves: string[];
   name: string;
   types: string[];

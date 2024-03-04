@@ -22,7 +22,9 @@ export const Layout: FC<LayoutProps> = () => (
         <SelectType />
       </Space>
 
-      <Outlet />
+      <main className={styles.main}>
+        <Outlet />
+      </main>
     </Space>
   </div>
 );

@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
 
 import Input from 'antd/es/input/Input';
+import LoadingOutlined from '@ant-design/icons/LoadingOutlined';
 import SearchOutlined from '@ant-design/icons/SearchOutlined';
 
 import { clearFilterBy, selectFilterBy, setFilterBy } from 'src/store/filterSlice';
@@ -15,11 +16,16 @@ export const SearchByName: FC = () => {
   const { name } = useParams();
   const navigate = useNavigate();
   const [value, setValue] = useState(name);
+  const [loading, setLoading] = useState(false);
   const filterBy = useSelector(selectFilterBy);
   const dispatch = useDispatch();
 
   const debounceNavigate = useMemo(
-    () => debounce((name) => navigate(`${Path.Pokemon}/${name}`), 500),
+    () =>
+      debounce((name) => {
+        setLoading(false);
+        navigate(`${Path.Pokemon}/${name}`);
+      }, 500),
     [navigate],
   );
 
@@ -30,31 +36,33 @@ export const SearchByName: FC = () => {
 
       if (!value) {
         dispatch(clearFilterBy());
+        setLoading(false);
         navigate(Path.Home);
         return;
       }
 
       if (filterBy !== 'name') dispatch(setFilterBy('name'));
+      setLoading(true);
       debounceNavigate(value);
     },
     [debounceNavigate, dispatch, filterBy, navigate],
   );
 
   useEffect(() => {
-    setValue(name);
-
     if (filterBy !== 'name') {
+      if (!name) setValue('');
       debounceNavigate.cancel();
     }
   }, [debounceNavigate, filterBy, name]);
 
   return (
     <Input
+      allowClear={!loading}
       className={styles.input}
       placeholder="Enter name"
       prefix={<SearchOutlined />}
+      suffix={loading ? <LoadingOutlined /> : null}
       value={value}
-      allowClear
       onChange={handleChange}
     />
   );
