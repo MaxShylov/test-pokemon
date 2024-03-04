@@ -2,9 +2,12 @@ import React, { type FC } from 'react';
 
 import Col from 'antd/es/col';
 import Divider from 'antd/es/divider';
+import Flex from 'antd/es/flex';
 import Image from 'antd/es/image';
 import Row from 'antd/es/row';
+import Space from 'antd/es/space';
 
+import { ButtonBack } from 'src/components/buttons/ButtonBack';
 import { type IPokemon } from 'src/types';
 import { capitalize } from 'src/utils/helpers/text';
 
@@ -18,26 +21,31 @@ interface PokemonDetailsProps {
 export const PokemonDetails: FC<PokemonDetailsProps> = ({
   pokemon: { image, moves, name, types },
 }) => (
-  <Row gutter={32} justify="center">
-    <Col flex="0 1 200px">
-      <div>
-        <Image alt={name} src={image} width={200} />
-      </div>
-    </Col>
-    <Col flex="1 1 500px">
-      <div>
-        <h2>{capitalize(name)}</h2>
-
+  <Space direction="vertical">
+    <Flex justify="center">
+      <ButtonBack />
+    </Flex>
+    <Row gutter={32} justify="center">
+      <Col flex="0 1 200px">
         <div>
-          <Divider>Types</Divider>
-          <PokemonTypes types={types} />
+          <Image alt={name} src={image} width={200} />
         </div>
-
+      </Col>
+      <Col flex="1 1 500px">
         <div>
-          <Divider>Moves</Divider>
-          <PokemonMoves moves={moves} />
+          <h2>{capitalize(name)}</h2>
+
+          <div>
+            <Divider>Types</Divider>
+            <PokemonTypes types={types} />
+          </div>
+
+          <div>
+            <Divider>Moves</Divider>
+            <PokemonMoves moves={moves} />
+          </div>
         </div>
-      </div>
-    </Col>
-  </Row>
+      </Col>
+    </Row>
+  </Space>
 );
