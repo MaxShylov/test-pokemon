@@ -1,7 +1,7 @@
 import React, { type FC, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { Button } from 'antd';
+import Button from 'antd/es/button/button';
 
 import { Path } from 'src/types';
 

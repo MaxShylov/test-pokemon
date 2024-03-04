@@ -7,11 +7,7 @@ import { SearchByName, SelectType } from 'src/components/controls';
 
 import styles from './Layout.module.scss';
 
-interface LayoutProps {
-  data?: unknown;
-}
-
-export const Layout: FC<LayoutProps> = () => (
+export const Layout: FC = () => (
   <div className={styles.wrap}>
     <Space align="center" direction="vertical">
       <h1>Pokémon</h1>

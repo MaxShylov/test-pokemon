@@ -7,6 +7,7 @@ import Image from 'antd/es/image';
 import Row from 'antd/es/row';
 import Space from 'antd/es/space';
 
+import { ButtonBackHome } from 'src/components/buttons';
 import { ButtonBack } from 'src/components/buttons/ButtonBack';
 import { type IPokemon } from 'src/types';
 import { capitalize } from 'src/utils/helpers/text';
@@ -22,8 +23,9 @@ export const PokemonDetails: FC<PokemonDetailsProps> = ({
   pokemon: { image, moves, name, types },
 }) => (
   <Space direction="vertical">
-    <Flex justify="center">
+    <Flex gap={8} justify="center">
       <ButtonBack />
+      <ButtonBackHome />
     </Flex>
     <Row gutter={32} justify="center">
       <Col flex="0 1 200px">

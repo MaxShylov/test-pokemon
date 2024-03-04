@@ -1,10 +1,14 @@
 import React, { type FC } from 'react';
 import { useParams } from 'react-router-dom';
 
+import Space from 'antd/es/space';
+
+import { ButtonBackHome } from 'src/components/buttons';
 import { ErrorAlert } from 'src/components/ErrorAlert';
 import { Loader } from 'src/components/loader';
 import { PokemonList } from 'src/components/pokemon-list';
 import { useGetPokemonListByTypeQuery } from 'src/store/services/pokemon';
+import { capitalize } from 'src/utils/helpers/text';
 
 export const Type: FC = () => {
   const { type = '' } = useParams();
@@ -15,10 +19,12 @@ export const Type: FC = () => {
   if (error || !pokemonNames) return <ErrorAlert error={error} message="Pokémon not found" />;
 
   return (
-    <div>
-      <h2>Type: {type}</h2>
+    <Space align="center" direction="vertical">
+      <ButtonBackHome />
+
+      <h2>Type: {capitalize(type)}</h2>
 
       <PokemonList data={pokemonNames} />
-    </div>
+    </Space>
   );
 };
