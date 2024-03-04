@@ -6,7 +6,7 @@ import Input from 'antd/es/input/Input';
 import LoadingOutlined from '@ant-design/icons/LoadingOutlined';
 import SearchOutlined from '@ant-design/icons/SearchOutlined';
 
-import { clearFilterBy, selectFilterBy, setFilterBy } from 'src/store/filterSlice';
+import { clearFilterBy, selectFilterBy, setFilterBy } from 'src/store/slices/filterSlice';
 import { Path } from 'src/types';
 import { debounce } from 'src/utils/helpers/functions';
 

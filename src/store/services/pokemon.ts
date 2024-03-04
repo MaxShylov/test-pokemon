@@ -2,7 +2,7 @@ import { createApi } from '@reduxjs/toolkit/query/react';
 
 import { type IPokemon } from 'src/types';
 
-import { axiosBaseQuery } from '../axiosBaseQuery';
+import { axiosBaseQuery } from '../api/axiosBaseQuery';
 
 interface PokemonResponse {
   id: string;
@@ -18,19 +18,33 @@ interface PokemonResponse {
   types: { type: { name: string } }[];
 }
 
+interface PokemonListArgs {
+  limit?: number;
+  offset?: number;
+}
+
+interface PokemonListResponse {
+  count: number;
+  results: { name: string }[];
+}
+
+interface PokemonListReturn {
+  count: number;
+  names: string[];
+}
+
 interface PokemonListByTypeResponse {
   pokemon: { pokemon: { name: string } }[];
 }
-interface TypeResponse {
+type PokemonListByTypeRequrn = string[];
+
+interface PokemonTypeResponse {
   results: { name: string }[];
 }
 
 export const pokemonApi = createApi({
   baseQuery: axiosBaseQuery(),
   endpoints: (build) => ({
-    getPokemon: build.query<PokemonResponse[], void>({
-      query: () => ({ url: `/pokemon?limit=12` }),
-    }),
     getPokemonByName: build.query<IPokemon, string>({
       query: (name) => ({ url: `/pokemon/${name.toLowerCase()}` }),
       transformResponse: (response: PokemonResponse): IPokemon => {
@@ -45,14 +59,24 @@ export const pokemonApi = createApi({
         };
       },
     }),
-    getPokemonListByType: build.query<string[], string>({
+    getPokemonList: build.query<PokemonListReturn, PokemonListArgs>({
+      query: ({ limit = 12, offset = 0 }) => ({
+        params: { limit, offset },
+        url: `/pokemon`,
+      }),
+      transformResponse: (response: PokemonListResponse): PokemonListReturn => {
+        const { count, results } = response;
+        return { count, names: results.map(({ name }) => name) };
+      },
+    }),
+    getPokemonListByType: build.query<PokemonListByTypeRequrn, string>({
       query: (type) => ({ url: `/type/${type}` }),
       transformResponse: (response: PokemonListByTypeResponse): string[] =>
         response.pokemon.map(({ pokemon }) => pokemon.name),
     }),
-    getTypes: build.query<string[], void>({
+    getPokemonTypes: build.query<string[], void>({
       query: () => ({ url: `/type` }),
-      transformResponse: (response: TypeResponse): string[] =>
+      transformResponse: (response: PokemonTypeResponse): string[] =>
         response.results.map(({ name }) => name),
     }),
   }),
@@ -62,7 +86,6 @@ export const pokemonApi = createApi({
 export const {
   useGetPokemonByNameQuery,
   useGetPokemonListByTypeQuery,
-  useGetPokemonQuery,
-  useGetTypesQuery,
-  useLazyGetPokemonByNameQuery,
+  useGetPokemonListQuery,
+  useGetPokemonTypesQuery,
 } = pokemonApi;

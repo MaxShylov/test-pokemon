@@ -4,8 +4,8 @@ import { useNavigate, useParams } from 'react-router-dom';
 
 import Select from 'antd/es/select';
 
-import { setFilterBy } from 'src/store/filterSlice';
-import { useGetTypesQuery } from 'src/store/services/pokemon';
+import { useGetPokemonTypesQuery } from 'src/store/services/pokemon';
+import { setFilterBy } from 'src/store/slices/filterSlice';
 import { Path } from 'src/types';
 import { capitalize } from 'src/utils/helpers/text';
 
@@ -14,7 +14,7 @@ export const SelectType: FC = () => {
   const dispatch = useDispatch();
 
   const navigate = useNavigate();
-  const { data: types, isLoading } = useGetTypesQuery();
+  const { data: types, isLoading } = useGetPokemonTypesQuery();
 
   const options = useMemo(
     () => types?.map((type) => ({ label: capitalize(type), value: type })),
