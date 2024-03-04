@@ -3,6 +3,8 @@ import { type AxiosError, type AxiosRequestConfig } from 'axios';
 
 import { type BaseQueryFn } from '@reduxjs/toolkit/query';
 
+import { type ApiError } from 'src/types';
+
 export const axiosBaseQuery =
   (
     { baseUrl }: { baseUrl: string } = {
@@ -17,7 +19,7 @@ export const axiosBaseQuery =
       url: string;
     },
     unknown,
-    unknown
+    ApiError
   > =>
   async ({ data, headers, method = 'get', params, url }) => {
     try {
