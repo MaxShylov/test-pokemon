@@ -9,6 +9,7 @@ import Space from 'antd/es/space';
 
 import { ButtonBackHome } from 'src/components/buttons';
 import { ButtonBack } from 'src/components/buttons/ButtonBack';
+import { SkeletonPokemonImage } from 'src/components/skeleton-pokemon-image';
 import { type IPokemon } from 'src/types';
 import { capitalize } from 'src/utils/helpers/text';
 
@@ -28,10 +29,8 @@ export const PokemonDetails: FC<PokemonDetailsProps> = ({
       <ButtonBackHome />
     </Flex>
     <Row gutter={32} justify="center">
-      <Col flex="0 1 200px">
-        <div>
-          <Image alt={name} src={image} width={200} />
-        </div>
+      <Col flex="0 1">
+        <div>{image ? <Image alt={name} src={image} width={260} /> : <SkeletonPokemonImage />}</div>
       </Col>
       <Col flex="1 1 500px">
         <div>

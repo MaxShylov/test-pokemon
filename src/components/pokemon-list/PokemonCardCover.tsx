@@ -1,19 +1,16 @@
 import React, { type FC } from 'react';
 
-import SkeletonImage from 'antd/es/skeleton/Image';
-
+import { SkeletonPokemonImage } from 'src/components/skeleton-pokemon-image';
 import { useGetPokemonByNameQuery } from 'src/store/services/pokemon';
-
-import styles from './PokemonCard.module.scss';
 
 interface PokemonCardCoverProps {
   name: string;
 }
 
 export const PokemonCardCover: FC<PokemonCardCoverProps> = ({ name }) => {
-  const { data } = useGetPokemonByNameQuery(name);
+  const { data, isLoading } = useGetPokemonByNameQuery(name);
 
-  if (!data?.image) return <SkeletonImage rootClassName={styles.skeletonImage} active />;
+  if (!data?.image) return <SkeletonPokemonImage active={isLoading} />;
 
   return <img alt={name} src={data?.image} />;
 };
