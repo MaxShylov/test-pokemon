@@ -1,0 +1,13 @@
+.image {
+  &:global {
+    &.ant-skeleton {
+      width: 260px;
+      height: 280px;
+
+      .ant-skeleton-image {
+        height: 100%;
+        width: 100%;
+      }
+    }
+  }
+}
