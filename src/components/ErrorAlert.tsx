@@ -3,6 +3,7 @@ import React, { type FC, useMemo } from 'react';
 import { type SerializedError } from '@reduxjs/toolkit';
 
 import Alert from 'antd/es/alert/Alert';
+import Flex from 'antd/es/flex';
 
 import { type ApiError } from 'src/types';
 import { isApiError } from 'src/utils/helpers/types';
@@ -19,5 +20,9 @@ export const ErrorAlert: FC<ErrorAlertProps> = ({ error, message }) => {
     return message;
   }, [error, message]);
 
-  return <Alert message={msg} type="error" showIcon />;
+  return (
+    <Flex justify="center">
+      <Alert message={msg} type="error" showIcon />
+    </Flex>
+  );
 };
