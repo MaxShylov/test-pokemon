@@ -1,19 +1,33 @@
 .wrap {
-  display: flex;
-  justify-content: center;
   height: 100dvh;
   padding-top: 40px;
 }
 
+.title {
+  text-align: center;
+}
+
+.controlsWrap {
+  display: flex;
+  justify-content: center;
+}
+
 .controls {
   display: grid;
-  gap: 16px;
   grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  max-width: 500px;
   padding-inline: 16px;
 }
 
+.mainWrap {
+  display: flex;
+  justify-content: center;
+}
+
 .main {
-  margin-block: 20px;
+  width: 100%;
   max-width: 1200px;
+  margin-block: 20px;
   padding-inline: 16px;
 }

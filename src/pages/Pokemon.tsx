@@ -9,9 +9,9 @@ import { useGetPokemonByNameQuery } from 'src/store/services/pokemon';
 export const Pokemon: FC = () => {
   const { name = '' } = useParams();
 
-  const { data: pokemon, error, isLoading } = useGetPokemonByNameQuery(name);
+  const { data: pokemon, error, isFetching } = useGetPokemonByNameQuery(name);
 
-  if (isLoading) return <Loader />;
+  if (isFetching) return <Loader />;
   if (error || !pokemon) return <ErrorAlert error={error} message="Pokémon not found" />;
 
   return <PokemonDetails pokemon={pokemon} />;

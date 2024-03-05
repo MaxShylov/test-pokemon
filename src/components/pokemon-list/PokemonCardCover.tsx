@@ -8,9 +8,9 @@ interface PokemonCardCoverProps {
 }
 
 export const PokemonCardCover: FC<PokemonCardCoverProps> = ({ name }) => {
-  const { data, isLoading } = useGetPokemonByNameQuery(name);
+  const { data, isFetching } = useGetPokemonByNameQuery(name);
 
-  if (!data?.image) return <SkeletonPokemonImage active={isLoading} />;
+  if (!data?.image) return <SkeletonPokemonImage active={isFetching} />;
 
   return <img alt={name} src={data?.image} />;
 };

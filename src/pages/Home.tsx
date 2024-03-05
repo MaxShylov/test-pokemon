@@ -1,6 +1,6 @@
 import React, { type FC } from 'react';
 
-import Space from 'antd/es/space';
+import Flex from 'antd/es/flex';
 
 import { ErrorAlert } from 'src/components/ErrorAlert';
 import { Loader } from 'src/components/loader';
@@ -21,10 +21,12 @@ export const Home: FC = () => {
   if (error || !data) return <ErrorAlert error={error} message="Pokémon not found" />;
 
   return (
-    <Space align="center" direction="vertical">
-      <PokemonList data={data.names} />
+    <Flex align="center" gap={32} vertical>
+      <div className="w-100">
+        <PokemonList data={data.names} />
+      </div>
 
       <Pagination total={data.count} />
-    </Space>
+    </Flex>
   );
 };

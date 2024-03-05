@@ -1,25 +1,25 @@
 import React, { type FC } from 'react';
 import { Outlet } from 'react-router-dom';
 
-import Space from 'antd/es/space';
-
 import { SearchByName, SelectType } from 'src/components/controls';
 
 import styles from './Layout.module.scss';
 
 export const Layout: FC = () => (
   <div className={styles.wrap}>
-    <Space align="center" direction="vertical">
-      <h1>Pokémon</h1>
+    <h1 className={styles.title}>Pokémon</h1>
 
-      <aside className={styles.controls}>
+    <aside className={styles.controlsWrap}>
+      <div className={styles.controls}>
         <SearchByName />
         <SelectType />
-      </aside>
+      </div>
+    </aside>
 
-      <main className={styles.main}>
+    <main className={styles.mainWrap}>
+      <div className={styles.main}>
         <Outlet />
-      </main>
-    </Space>
+      </div>
+    </main>
   </div>
 );

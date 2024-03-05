@@ -13,9 +13,9 @@ import { capitalize } from 'src/utils/helpers/text';
 export const Type: FC = () => {
   const { type = '' } = useParams();
 
-  const { data: pokemonNames, error, isLoading } = useGetPokemonListByTypeQuery(type);
+  const { data: pokemonNames, error, isFetching } = useGetPokemonListByTypeQuery(type);
 
-  if (isLoading) return <Loader />;
+  if (isFetching) return <Loader />;
   if (error || !pokemonNames) return <ErrorAlert error={error} message="Pokémon not found" />;
 
   return (

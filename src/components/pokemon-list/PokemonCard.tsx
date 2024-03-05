@@ -2,8 +2,8 @@ import React, { type FC, useCallback, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import Card from 'antd/es/card/Card';
-import SkeletonImage from 'antd/es/skeleton/Image';
 
+import { SkeletonPokemonImage } from 'src/components/skeleton-pokemon-image';
 import { useElementOnScreen } from 'src/hooks/useElementOnScreen';
 import { Path } from 'src/types';
 import { capitalize } from 'src/utils/helpers/text';
@@ -24,7 +24,7 @@ export const PokemonCard: FC<PokemonCardProps> = ({ name }) => {
   const [ref, isVisible] = useElementOnScreen<HTMLDivElement>();
 
   const cover = useMemo(() => {
-    if (!isVisible) return <SkeletonImage rootClassName={styles.skeletonImage} active />;
+    if (!isVisible) return <SkeletonPokemonImage active />;
 
     return <PokemonCardCover name={name} />;
   }, [isVisible, name]);

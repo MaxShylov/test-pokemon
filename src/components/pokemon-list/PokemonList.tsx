@@ -2,7 +2,7 @@ import React, { type FC, useCallback } from 'react';
 
 import List from 'antd/es/list';
 
-import { PokemonCard } from 'src/components/pokemon-list/PokemonCard';
+import { PokemonCard } from './PokemonCard';
 
 interface PokemonListProps {
   data: string[];
