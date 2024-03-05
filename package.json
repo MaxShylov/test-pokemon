@@ -26,6 +26,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
+    "dev": "pnpm start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
@@ -35,6 +36,8 @@
     "lint:styles:fix": "pnpm lint:styles --fix",
     "server:build": "cd server && pnpm build",
     "server:start": "cd server && pnpm start",
+    "server:dev": "cd server && pnpm dev",
+    "dev-all": "pnpm --recursive --parallel run dev",
     "build-and-start": "pnpm build && pnpm server:build && pnpm server:start",
     "prepare": "husky"
   },
