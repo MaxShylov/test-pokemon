@@ -23,7 +23,7 @@ export const SearchByName: FC = () => {
       debounce((name) => {
         setLoading(false);
         navigate(`${Path.Pokemon}/${name}`);
-      }, 3000),
+      }, 500),
     [navigate],
   );
 
